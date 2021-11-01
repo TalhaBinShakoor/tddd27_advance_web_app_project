@@ -1,0 +1,298 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Monitor API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/addWebService": {
+      "post": {
+        "security": [] ,
+        "operationId": "insert",
+        "x-vertx-event-bus": "db_service.webService",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebService"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/updateWebService": {
+      "post": {
+        "security": [] ,
+        "operationId": "update",
+        "x-vertx-event-bus": "db_service.webService",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebService"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/deleteWebService": {
+      "post": {
+        "security": [] ,
+        "operationId": "deleteWebService",
+        "x-vertx-event-bus": "db_service.webService",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebService"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/getAllWebServices": {
+      "get": {
+        "security": [] ,
+        "operationId": "findWebServicesByUser",
+        "x-vertx-event-bus": "db_service.webService",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/addUser": {
+      "post": {
+        "security": [] ,
+        "operationId": "insertUser",
+        "x-vertx-event-bus": "db_service.user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/updateUser": {
+      "post": {
+        "security": [] ,
+        "operationId": "updateUser",
+        "x-vertx-event-bus": "db_service.user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/getAllUser": {
+      "get": {
+        "security": [] ,
+        "operationId": "findAllUsers",
+        "x-vertx-event-bus": "db_service.user",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/findUser": {
+      "post": {
+        "security": [] ,
+        "operationId": "findUser",
+        "x-vertx-event-bus": "db_service.user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/authenticate": {
+      "post": {
+        "security": [] ,
+        "operationId": "AuthenticateUser",
+        "x-vertx-event-bus": "authentication",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/getApiStatus": {
+      "get": {
+        "security": [] ,
+        "operationId": "getApiStatus",
+        "x-vertx-event-bus": "api_service",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WebService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "url": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "url",
+          "name",
+          "method"
+        ]
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "email"
+        ]
+      }
+    },
+    "securitySchemes":{
+    "jwtAuth":{
+     "type": "http",
+     "scheme": "bearer",
+     "bearerFormat": "JWT"
+     }
+    }
+  },
+  "security": [
+    {
+      "jwtAuth": []
+     }
+    ]
+}

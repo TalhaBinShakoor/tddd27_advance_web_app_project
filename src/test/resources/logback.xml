@@ -1,0 +1,31 @@
+<configuration>
+
+	<appender name="FIX_WINDOW_BASED_FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>./org.liu.master.cs.apimonitor</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>./apimonitor%i.log</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>
+
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>5MB</maxFileSize>
+		</triggeringPolicy>
+
+		<encoder>
+			<pattern>%d{dd/MM/yyyy HH:mm:ss,SSS} %-5p %c %x - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.mchange.v2" level="warn" />
+	<logger name="io.netty" level="warn" />
+	<logger name="io.vertx" level="info" />
+	<logger name="org.liu.master.cs.apimonitor" level="debug" />
+
+	<root level="debug">
+		<appender-ref ref="FIX_WINDOW_BASED_FILE" />
+	</root>
+
+</configuration>

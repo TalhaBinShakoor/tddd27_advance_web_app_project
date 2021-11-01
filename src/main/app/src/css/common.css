@@ -1,0 +1,12 @@
+.centered {
+    height: 100vh; /* Magic here */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.center {
+    display: flex;
+    margin-left: 25%;
+    margin-top: 1%;
+  }

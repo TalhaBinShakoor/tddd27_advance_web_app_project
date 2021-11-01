@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Monitor API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/addWebService": {
+      "post": {
+        "operationId": "insert",
+        "x-vertx-event-bus": "db_service.webService",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebService"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/updateWebService": {
+      "post": {
+        "operationId": "update",
+        "x-vertx-event-bus": "db_service.webService",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebService"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/getAllWebServices": {
+      "get": {
+        "operationId": "findAll",
+        "x-vertx-event-bus": "db_service.webService",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    },
+    "/api/getApiStatus": {
+      "get": {
+        "operationId": "getApiStatus",
+        "x-vertx-event-bus": "api_service",
+        "responses": {
+          "200": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Something wrong happened"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "WebService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "host": {
+            "type": "string"
+          },
+          "port": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "host",
+          "port",
+          "name",
+          "method"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+/* By Talha */
+.dashBoard{
+  opacity: 0.5;
+}
+.dashBoard:hover{
+  opacity: 0.8;
+}
+.dashBoard:active{
+  opacity: 1;
+}
